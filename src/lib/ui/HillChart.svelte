@@ -5,9 +5,9 @@
 	let pathD = ''; // This will hold the path data
 	let handleCX = 10; // Initial X position of the handle
 	let handleCY = 290; // Initial Y position of the handle
+    let pathNode: SVGPathElement | null = null;
 
-	function dragStarted(event: any) {
-		//@ts-ignore
+	function dragStarted(this: SVGCircleElement, event: DragEvent) {
 		d3.select(this).raise();
 	}
 
@@ -15,11 +15,9 @@
 		const mouseX = event.x;
 		const mouseY = event.y;
 		const closestPoint = getClosestPointOnPath(mouseX, mouseY);
-
         if (!closestPoint) {
             return;
         }
-
 		handleCX = closestPoint.x;
 		handleCY = closestPoint.y;
 	}
@@ -30,16 +28,12 @@
 
 	function dragBehavior(node: Element) {
 		const drag = d3.drag().on('start', dragStarted).on('drag', dragged).on('end', dragEnded);
-
 		drag(d3.select(node));
 	}
 
 	function getClosestPointOnPath(mouseX: number, mouseY: number) {
 		let minDist = Infinity;
 		let closestPoint = null;
-
-        // Get a reference to the path element
-        const pathNode = document.querySelector('path');
 
         if (!pathNode) {
             return null;
@@ -59,17 +53,31 @@
 		return closestPoint;
 	}
 
-	onMount(() => {
+    function updateCirclePosition(percentage) {
+        if (!pathNode) {
+            return 0;
+        }
+        const totalLength = pathNode.getTotalLength();
+        const length = totalLength * (percentage / 100);
+        const point = pathNode.getPointAtLength(length);
+        handleCX = point.x;
+        handleCY = point.y;
+    }
+
+	onMount(async () => {
 		const path = d3.path();
 		path.moveTo(10, 290); // Starting point
 		path.quadraticCurveTo(250, 10, 490, 290); // Create a curve
 
 		pathD = path.toString();
+        console.log(pathD)
+        pathNode = await document.querySelector('path');
+        updateCirclePosition(10);
 	});
 </script>
 
 <div class="mx-auto mt-12 max-w-[500px]">
-	<svg width="500" height="300">
+	<svg viewBox="0 0 500 300">
 		<path d={pathD} fill="none" stroke="black" />
 		<circle cx={handleCX} cy={handleCY} r="10" class="fill-sky-300" use:dragBehavior />
 	</svg>
