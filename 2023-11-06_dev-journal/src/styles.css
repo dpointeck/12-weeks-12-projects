@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Pixelify";
+    src: url(/assets/Pixelify.woff2) format("woff2");
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url(/assets/Inter.var.woff2) format("woff2");
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    font-weight: 100;
+    src: url(/assets/JetBrainsMono-Thin.woff2) format("woff2");
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    font-weight: 100;
+    font-style: italic;
+    src: url(/assets/JetBrainsMono-ThinItalic.woff2) format("woff2");
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    font-weight: 400;
+    src: url(/assets/JetBrainsMono-Regular.woff2) format("woff2");
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    font-weight: 700;
+    src: url(/assets/JetBrainsMono-Bold.woff2) format("woff2");
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    font-weight: 800;
+    src: url(/assets/JetBrainsMono-ExtraBold.woff2) format("woff2");
+}

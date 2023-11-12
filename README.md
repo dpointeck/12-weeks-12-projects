@@ -1,12 +1,6 @@
-# hillbilli
+# 12 weeks 12 projects
 
-![hillchart demo in svelte](hillbilli.png)
+The next 12 weeks I'll do a little project each week. For training purpose and for recreational programming (just have fun 😃).
 
-A simple [hillchart](https://basecamp.com/shapeup/3.4-chapter-13#work-is-like-a-hill) component which can programmatically updated.
-
-## gettings started 
-
-- clone the repo
-- run `npm install`
-- run `npm run dev`
-
+1. **hillbilli** - a simple svelte hillchart app (typescript, svelte, tailwindcss)
+2. **dev-journal** - jounaling app to try out angular 17 (typescript, angular, tailwindcss)
